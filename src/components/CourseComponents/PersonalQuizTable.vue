@@ -31,6 +31,12 @@
 					>
 						QR Code
 					</th>
+					<th
+						scope="col"
+						class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+					>
+						Feedback
+					</th>
 				</tr>
 			</thead>
 			<tbody class="bg-white divide-y divide-gray-200">
@@ -76,6 +82,13 @@
 						</v-overlay>
 						<!-- </router-link> -->
 					</td>
+					<td class="px-6 py-4 whitespace-nowrap">
+						<router-link
+							:to="`/course/${personalQuiz.title}/quiz/feedback/${personalQuiz.id}`"
+						>
+							<v-btn color="primary"> Review </v-btn>
+						</router-link>
+					</td>
 				</tr>
 				<!-- Repeat for each personal quiz record -->
 			</tbody>
@@ -90,6 +103,7 @@ import { useUserStore } from 'stores/UserStore';
 import { useQuizStore, PersonalQuizRecord } from 'stores/QuizStore';
 import { useRouter } from 'vue-router';
 const router = useRouter();
+const quizStore = useQuizStore();
 
 const props = defineProps({
 	personalQuizzes: {

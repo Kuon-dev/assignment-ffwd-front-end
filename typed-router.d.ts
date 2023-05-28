@@ -120,11 +120,11 @@ declare module 'vue-router/auto/routes' {
 			{ lang: ParamValue<true> },
 			{ lang: ParamValue<false> }
 		>;
-		'/course/[lang]/quiz/feedback': RouteRecordInfo<
-			'/course/[lang]/quiz/feedback',
-			'/course/:lang/quiz/feedback',
-			{ lang: ParamValue<true> },
-			{ lang: ParamValue<false> }
+		'/course/[lang]/quiz/feedback/[id]': RouteRecordInfo<
+			'/course/[lang]/quiz/feedback/[id]',
+			'/course/:lang/quiz/feedback/:id',
+			{ lang: ParamValue<true>; id: ParamValue<true> },
+			{ lang: ParamValue<false>; id: ParamValue<false> }
 		>;
 		'/course/[lang]/score/[score_id]': RouteRecordInfo<
 			'/course/[lang]/score/[score_id]',

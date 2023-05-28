@@ -72,6 +72,7 @@ import List from 'course-components/CourseList.vue';
 import BaseEditor from 'base-components/BaseEditor.vue';
 import { ref } from 'vue';
 import { useUserStore } from 'stores/UserStore';
+import { useQuizStore } from 'stores/QuizStore';
 import { getToken, apiClient } from 'stores/BackendAPI';
 import { AxiosError } from 'axios';
 
@@ -81,6 +82,12 @@ interface FeedbackDetails {
 }
 
 const store = useUserStore();
+const quizStore = useQuizStore();
+
+// Get Quiz ID
+const url = window.location.href;
+const quizId = url.substring(url.lastIndexOf('/') + 1);
+
 const feedback = ref<String>('');
 const errorMessage = ref('');
 
@@ -117,19 +124,20 @@ const submitFeedback = async (e: Event) => {
 		rating: stars.value,
 		feedback: feedback.value,
 		user: store.user.id,
+		quiz: quizId,
 	};
 	await getToken();
 	const res = await apiClient
-		.post('/api/feeback/create', body)
+		.post('/api/feedback/create', body)
 		.catch((err: Error | AxiosError) => {
 			const error = err as AxiosError;
 			// this.authErrors = (error?.response?.data as any).errors;
-			console.log(error);
+			// console.log(error);
 			return {
 				status: error?.response?.status,
 			};
 		});
-	console.log(res);
+	// console.log(res);
 };
 </script>
 
